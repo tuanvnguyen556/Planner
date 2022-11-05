@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic UI Example</title>
+
+    <!-- JQuery dependency -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <!-- ADD SEMANTIC UI LIBRARY SOURCE CODE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"
+        integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css"
+        integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <script src="./script.js"></script>
+</head>
+
+<body>
+    <div class="ui card">
+        <div class="ui content">
+            <h1>Calculator</h1>
+
+            <form class="ui form" id="calculator" onsubmit="calculate(event)">
+                <div class="ui field">
+                    <label>First Number</label>
+                    <input type="number" placeholder="Enter any number..." />
+                </div>
+                <div class="ui field">
+                    <label>Operator</label>
+                    <select name="operation" class="ui dropdown">
+                        <option value="+">Plus</option>
+                        <option value="-">Minus</option>
+                        <option value="*">Times</option>
+                        <option value="/">Divided by</option>
+                    </select>
+                </div>
+                <div class="ui field">
+                    <label>Second Number</label>
+                    <input type="number" placeholder="Second Number" />
+                </div>
+                <button class="ui button">Submit</button>
+            </form>
+            <div id="answer"></div>
+        </div>
+    </div>
+</body>
+
+</html>
