@@ -19,10 +19,5 @@ def home():
     if request.method == 'GET':
         return courses
 
-@app.route("/professor/",methods=['GET'])
-def prof():
-    if request.method == 'GET':
-        searchword = request.args.get('key', '')
-        return searchword
 if __name__ == "__main__":
     app.run(host='localhost', port=4000)
