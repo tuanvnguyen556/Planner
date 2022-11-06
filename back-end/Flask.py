@@ -1,5 +1,5 @@
-from flask import Flask, request  
-import requests  
+from flask import Flask, request
+import requests
 import json
 app = Flask(__name__)
 
@@ -9,7 +9,6 @@ first_response = requests.get(url_course)
 second_response = requests.get(url_prof)
 courses = []
 profs = []
-nul = []
 DEPARTMENT = "I&C SCI"
 for i in first_response.json():
     if i["department"] == DEPARTMENT:
@@ -19,24 +18,33 @@ for i in first_response.json():
 @app.route("/",methods = ['GET'])
 def course():
     if request.method == 'GET':
-        return json.dumps(courses)
+        return {'courses':courses}
 
 @app.route("/professor/",methods=['GET'])
 def prof():
-    if request.method == 'GET':
-        found_course = request.args['class']
-        num = found_course.rfind('S')
-        course_number = found_course[num + 1:]
-        print(first_response)
-        return course_number
-        for s in second_response.json():
-            if (s["number"] == course_number) and (s["department"] == DEPARTMENT):
-                if type(s["averageGPA"]) in [int, float]:
-                    profs.append((s["instructor"], s["averageGPA"]))
-                else:
-                    nul.append((s["instructor"], s["averageGPA"]))
-        prof_sort = sorted(prof, key=(lambda x: x[1]))
-        return prof_sort
+
+    save = request.data
+    return save
+    def run():
+        response = requests.get("https://api.peterportal.org/rest/v0/grades/raw")
+        ist = response.json()
+        end = []
+        final = []
+        for i in ist:
+            if i["department"] == "I&C SCI":
+                if type(i["averageGPA"]) not in [int,float]:
+                    if i["number"] == save:
+                        end.append((i["instructor"],i["averageGPA"], i["number"]))
+                elif type(i["averageGPA"]) in [int,float]:
+                    if i["number"] == save:
+                        final.append((i["instructor"],i["averageGPA"], i["number"]))
+        fin = sorted(final, key=lambda x:x[1])
+        for i in end:
+            fin.append(i)
+        # results = dict((x, y) for x, y in fin)
+        return fin
+    return run()
+# print(run())
 
 if __name__ == "__main__":
-    app.run(host='localhost', port=4000)
+   app.run(host="localhost", port=4000)
