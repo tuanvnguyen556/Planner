@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import requests
 import json
 app = Flask(__name__)
@@ -18,8 +18,7 @@ for i in first_response.json():
 @app.route("/",methods = ['GET'])
 def course():
     if request.method == 'GET':
-        return {'courses':courses}
-
+        return jsonify({'courses':courses})
 @app.route("/professor/",methods=['GET'])
 def prof():
 
