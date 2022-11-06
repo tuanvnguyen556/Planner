@@ -5,22 +5,24 @@ import Option from './option.js'
 function App() {
 
   function getClasses() {
-    fetch('127.0.0.1:4000/', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    })
-      .then(response => response.text())
-      .then(text => console.log(text));
+    let data;
+    // fetch('127.0.0.1:4000/')
+    //   .then(response => {
+    //     let data = response.json()
+    //     console.log(data)
+    //   })
+    const url = '127.0.0.1:4000/';
+    fetch(url)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json.JSON.jsonify);
+      })
 
-    const listOfClasses = [1, 2, 3, 4, 5, 6];
     const listOfClasses2 = [];
 
-    for (let i = 0; i < listOfClasses.length; i++) {
-      listOfClasses2.push(<option key={listOfClasses[i]}> <button onClick={() => console.log("TEST")}> {listOfClasses[i]} </button> </option>);
-    }
+    // for (let i = 0; i < data.keys(dictionary).length; i++) {
+    //   listOfClasses2.push(<option key={data[i]}></option>);
+    // }
 
     return listOfClasses2
 
@@ -44,12 +46,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Prof Planner</h1>
+      {/* <img class = "blackadam" src={require('./blackadambald.jpeg')} alt='Black adam'></img> */}
+      <h1 class="theTitle">Prof Planner</h1>
       <p>Welcome to the Professor Planner!</p>
       <label>Choose a Class:</label>
 
-    
-        {getClasses}  <select name="classes" id="dropdown">
+
+      <select name="classes" id="dropdown">
         {getClasses()}
       </select>
 

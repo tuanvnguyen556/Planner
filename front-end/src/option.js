@@ -4,8 +4,8 @@ function Option() {
 
     return (
         <>
-        <h1>Hello World</h1>
-        <h1>Hello Again</h1>
+        <h1>By Team 4</h1>
+        <h2>"Tell them the man in black sent you"</h2>
         </>
     );
 }
